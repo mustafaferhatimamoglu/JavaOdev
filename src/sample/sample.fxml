@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="457.0" prefWidth="600.0">
+
+   <AnchorPane prefHeight="457.0" prefWidth="600.0">
          <children>
-            <Button layoutX="27.0" layoutY="23.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="141.0" text="Button" />
+            <Button layoutX="178.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="245.0" text="XmlOku" />
+            <Button layoutX="27.0" layoutY="23.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="141.0" text="TextOku" />
          </children>
-      </AnchorPane>
-   </children>
+   </AnchorPane>
 </VBox>
