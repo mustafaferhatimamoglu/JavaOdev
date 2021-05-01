@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DATA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<record>
+    <date>A</date>
+    <name>B</name>
+    <country>C</country>
+    <value>D</value>
+    <category>E</category>
+</record>
+<record>
+    <date>A</date>
+    <name>B</name>
+    <country>C</country>
+    <value>D</value>
+    <category>E</category>
+</record>
+
+</DATA>
