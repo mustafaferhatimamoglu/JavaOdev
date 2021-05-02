@@ -40,6 +40,9 @@ istenilenler xlsx formatında DATA klasörünün altında
 button click fonksiyonu düzgün bir biçimde çalışmadığından -https://stackoverflow.com/questions/17344698/java-fx-fxml-on-action
 bu arkadaşın yazdığının aynısı template olarak kullanılarak devam ediliyor
 
+text karşılaştırma fonksiyonu düzgün bir biçimde çalışmadığından -https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java
+burdan destek alınarak yapılmıştır
+
 
 
 The main learning objectives of this assignment are:
