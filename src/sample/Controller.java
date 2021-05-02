@@ -21,6 +21,7 @@ public class Controller implements Initializable
     @FXML
     private void BCXmlOku(ActionEvent event){
         System.out.println("XmlOku butonu tetik");
+
     }
     @FXML
     private void BCTextOku(ActionEvent event){

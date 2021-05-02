@@ -37,6 +37,9 @@ istenilenler xlsx formatında DATA klasörünün altında
 -xml linkteki destekle hazırlandı -https://spreadsheeto.com/xml/
 -text dosyası csv formatını kastettiğinden kaydı sağlandı
 
+button click fonksiyonu düzgün bir biçimde çalışmadığından -https://stackoverflow.com/questions/17344698/java-fx-fxml-on-action
+bu arkadaşın yazdığının aynısı template olarak kullanılarak devam ediliyor
+
 
 
 The main learning objectives of this assignment are:
