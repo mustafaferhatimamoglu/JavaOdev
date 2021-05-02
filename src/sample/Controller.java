@@ -18,4 +18,12 @@ public class Controller implements Initializable
     {
         System.out.println("lollolol");
     }
+    @FXML
+    private void BCXmlOku(ActionEvent event){
+        System.out.println("XmlOku butonu tetik");
+    }
+    @FXML
+    private void BCTextOku(ActionEvent event){
+        System.out.println("TextOku butonu tetik");
+    }
 }
