@@ -45,6 +45,7 @@ burdan destek alınarak yapılmıştır
 
 
 
+
 The main learning objectives of this assignment are:
 · Sorting arrays and list: Define the natural order of a user-defined type and sort an
 array/list.
