@@ -10,11 +10,12 @@ Grup65
 TODO List
 
 1-Sorting arrays and list: Define the natural order of a user-defined type and sort an
-array/list.
-2-)text ve xml oku
+array/list.++
+2-)text ve
+xml oku +?  -
 3-) grafiğe bas 
-3-A)Plot bar
-3-B)Line chart
+3-A)Plot bar    mustafa
+3-B)Line chart  abdullah
 
 örnek dosya erudm de bulabilceğeğim belirtilmiş fakat malesef bulunamadı şaşırdıkmı ? (210501)
 dosya için format belirtilmiş en azından örn

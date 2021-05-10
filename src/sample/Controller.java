@@ -24,6 +24,8 @@ public class Controller implements Initializable
 
     List<String> Sdate=new ArrayList<String>();
     List<String> name=new ArrayList<String>();
+    List<String> namekey=new ArrayList<String>();
+
     List<String> country=new ArrayList<String>();
     List<String> Svalue=new ArrayList<String>();
     List<String> category=new ArrayList<String>();
@@ -32,11 +34,7 @@ public class Controller implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
     }
-    @FXML
-    private void test(ActionEvent event)
-    {
-        System.out.println("lollolol");
-    }
+
     @FXML
     private void BCXmlOku(ActionEvent event){
         System.out.println("XmlOku butonu tetik");
@@ -61,7 +59,8 @@ public class Controller implements Initializable
         /*FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);*/
         // TODO : üst satırı aç altı kapat
-        String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\DATA\\DATA.xml";
+        String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\country_populations.xml";
+        //String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\DATA\\DATA.xml";
 
         if (selectedFile == null) return;
         System.out.println(selectedFile);
@@ -81,21 +80,71 @@ public class Controller implements Initializable
 
 
     }
-    @FXML
-    private void BCTextOku(ActionEvent event){
-        System.out.println("TextOku butonu tetik");
+
+    private void F_xml (String gelen){
+        //System.out.println(gelen + " >> dosya xml olarak saptandı devam ediliyor");
+        DosyaOku(gelen);
+
+        while (true){
+            if (MasterData.indexOf("<record>") > 0){
+                MasterData = MasterData.substring(MasterData.indexOf("<record>"));
+                int r = MasterData.indexOf("</record>");
+                RecordList.add(MasterData.substring(0,r));
+
+                MasterData = MasterData.substring(r);
+
+                for (String record:RecordList){
+                    //System.out.println(record);
+                    String a1 = record.substring(record.indexOf("\"Name\" key=\""));
+                    namekey.add (RecordList.get(0).substring (0, RecordList.get(0).indexOf("\">")));
+
+                    //System.out.println(a1);
+                }
+                System.out.println(namekey);
+            }
+            else break;
+        }
+    }
+    private void DosyaOku(String gelen){
+        try {
+            File myObj = new File(gelen);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                //System.out.println(data);
+                MasterData += data;
+            }
+            myReader.close();
+            return;
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        MasterData = "Hata";
     }
 
-    private void F_xml(String gelen){
+
+
+
+
+
+
+
+
+
+    //--- eski fonksiyonlar
+
+    private void F_xml_eski(String gelen){
         System.out.println(gelen + " >> dosya xml olarak saptandı devam ediliyor");
-        DosyaOku("a1");
-        //System.out.println(MasterData);
+        DosyaOku(gelen);
+       // System.out.println(MasterData);
 
         //System.out.println(MasterData.indexOf("<record>"));
         //System.out.println(MasterData.substring(MasterData.indexOf("<record>")));
 
         //while (MasterData != "</record></DATA>"){  -- yine aynı java saçmalığı
-        while (!(new String("</record></DATA>").equals(MasterData))){
+        while (!(new String("</data>").equals(MasterData))){
+            //System.out.println(MasterData.substring(MasterData.indexOf("<record>")));
             MasterData = MasterData.substring(MasterData.indexOf("<record>"));
             int r = MasterData.indexOf("</record>");
             RecordList.add(MasterData.substring(0,r));
@@ -115,22 +164,16 @@ public class Controller implements Initializable
         //System.out.println(MasterData.indexOf("</record>"));
     }
 
-    private void DosyaOku(String gelen){
-        //TODO : geleni pathe at
-        try {
-            File myObj = new File("C:\\Users\\musta\\IdeaProjects\\untitled\\DATA\\DATA.xml");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                //System.out.println(data);
-                MasterData += data;
-            }
-            myReader.close();
-            return;
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        MasterData = "Hata";
+    @FXML
+    private void test(ActionEvent event)
+    {
+        System.out.println("lollolol");
     }
+
+
+    @FXML
+    private void BCTextOku(ActionEvent event){
+        System.out.println("TextOku butonu tetik");
+    }
+
 }
