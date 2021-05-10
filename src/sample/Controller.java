@@ -22,10 +22,10 @@ public class Controller implements Initializable
     String MasterData="";
     List<String> RecordList=new ArrayList<String>();
 
-    List<LocalDate> date=new ArrayList<LocalDate>();
+    List<String> Sdate=new ArrayList<String>();
     List<String> name=new ArrayList<String>();
     List<String> country=new ArrayList<String>();
-    List<String> value=new ArrayList<String>();
+    List<String> Svalue=new ArrayList<String>();
     List<String> category=new ArrayList<String>();
 
     @Override
@@ -107,8 +107,10 @@ public class Controller implements Initializable
             System.out.println(record);
             //date.add(new SimpleDateFormat( "yyyyMMdd" ).parse( "20100520" ));
             //TODO : yarın burdan devam et listlere verileri bas
+            String a1 = record.substring(record.indexOf("<date>"));
+            System.out.println(a1);
         }
-        System.out.println(date);
+        System.out.println(Sdate);
         //System.out.println(RecordList.get(0));
         //System.out.println(MasterData.indexOf("</record>"));
     }
