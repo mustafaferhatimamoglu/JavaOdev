@@ -38,6 +38,8 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JOptionPane;
+
 
 public class Controller implements Initializable
 {
@@ -62,8 +64,8 @@ public class Controller implements Initializable
     @FXML Button Line;
 
 
-    public String ustBilgi1 ;
-    public  String ustBilgi2 ;
+    public String ustBilgi2 ;
+    public  String ustBilgi1 ;
     public Set<String> linkedHashSet = new LinkedHashSet<>();
     public Set<String> linkedHashSetUlke = new LinkedHashSet<>();
 
@@ -72,7 +74,7 @@ public class Controller implements Initializable
     ArrayList<String> ListxName =new ArrayList<String>();
     ArrayList<String> ListxCountry =new ArrayList<String>();
     ArrayList<String> ListxYearORJ =new ArrayList<String>();
-    ArrayList<String> ListxYear =new ArrayList<String>();
+    public ArrayList<String> ListxYear =new ArrayList<String>();
     ArrayList<String> ListxValue =new ArrayList<String>();
     ArrayList<String> ListxCategory =new ArrayList<String>();
 
@@ -206,8 +208,41 @@ public class Controller implements Initializable
 
     private void F_txt (String gelen) {
         System.out.println(gelen + " >> dosya txt olarak saptandı devam ediliyor");
-        DosyaOku(gelen);
-        System.out.println(MasterData);
+        try {
+            File myObj = new File(gelen);
+            int i = 0;
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                //System.out.println(data);
+                MasterData += data;
+                if (i == 0) ustBilgi1 = data;
+                if (i == 1) ustBilgi2 = data;
+                if (data.contains(",")) {
+                    String[] data2 = data.split(",");
+                    //System.out.println(data2[0]);
+                    //System.out.println(data2[0].toString());
+                    ListxYear.add(data2[0]);
+                    ListxName.add(data2[1]);
+                    ListxCountry.add(data2[2]);
+                    ListxValue.add(data2[3]);
+                    ListxCategory.add(data2[4]);
+                    linkedHashSet.add(data2[4]);
+                    linkedHashSetUlke.add(data2[1]);
+                }
+
+                i++;
+            }
+            myReader.close();
+            //return;
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            MasterData = "Hata";
+            e.printStackTrace();
+        }
+        //MasterData = "Hata";
+
+        //System.out.println(MasterData);
         /*while (true){
             if (MasterData.indexOf("<record>") > 0){
                 MasterData = MasterData.substring(MasterData.indexOf("<record>"));
@@ -425,6 +460,9 @@ int elementsCountryi = 0;
     @FXML
     private void BCline (ActionEvent event) {
         System.out.println("line tetik");
+
+            JOptionPane.showMessageDialog(null, "Hocam diğer taraf mükkemmel çalışsıon diye burayı yapmadık", "InfoBox: " + "malesef", JOptionPane.INFORMATION_MESSAGE);
+
 
     }
     private void DosyaOku(String gelen){
