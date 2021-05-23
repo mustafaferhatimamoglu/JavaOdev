@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="634.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<AnchorPane id="AnchorPane" prefHeight="618.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Button fx:id="button" layoutX="257.0" layoutY="161.0" onAction="#test" text="lololol" />
-      <Button fx:id="XmlOku" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#BCXmlOku" prefHeight="25.0" prefWidth="97.0" text="XmlOku" />
-      <Button layoutX="256.0" layoutY="14.0" mnemonicParsing="false" onAction="#BCTextOku" prefWidth="97.0" text="Button" />
-      <BarChart layoutX="386.0" layoutY="117.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <Button fx:id="bar" layoutX="52.0" layoutY="105.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="line" layoutX="63.0" layoutY="174.0" mnemonicParsing="false" text="Button" />
+        <Button fx:id="XmlOku" layoutX="24.0" layoutY="41.0" mnemonicParsing="false" onAction="#BCXmlOku" prefHeight="25.0" prefWidth="97.0" text="XmlOku" />
+        <Button fx:id="Bar" layoutX="31.0" layoutY="87.0" mnemonicParsing="false" onAction="#BCbar" text="Bar" visible="false" />
+        <Button fx:id="Line" layoutX="83.0" layoutY="87.0" mnemonicParsing="false" onAction="#BCline" text="Line" visible="false" />
     </children>
 </AnchorPane>
