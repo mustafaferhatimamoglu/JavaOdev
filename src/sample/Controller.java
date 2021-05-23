@@ -420,10 +420,16 @@ int elementsCountryi = 0;
 
         barChart.setTitle(ustBilgi2);
 
-        VBox vbox = new VBox(barChart);
+        Button b1 = new Button("button");
+        Button b2 = new Button("button");
+        Button b3 = new Button("button");
+        VBox vbox = new VBox(barChart,b1,b2,b3);
         Scene scene = new Scene(vbox, 400, 200);
 
         Stage primaryStage = new Stage();
+        //Scene scene = new Scene(b, 200, 100);
+        //primaryStage.setScene(scene);
+
         primaryStage.setScene(scene);
         primaryStage.setHeight(300);
         primaryStage.setWidth(400);
