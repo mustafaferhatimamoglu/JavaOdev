@@ -1,0 +1,7 @@
+World's most valuable brands from 2000 to 2018
+Value ($ million)
+
+75
+2000-01-01,adidas,Germany,3791,Sporting Goods
+2000-01-01,Amazon,United States,4528,Retail
+2000-01-01,American Express,United States,16122,Financial Services
