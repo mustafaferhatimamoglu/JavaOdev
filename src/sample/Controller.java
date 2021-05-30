@@ -3,19 +3,23 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -44,6 +48,8 @@ import javax.swing.JOptionPane;
 public class Controller implements Initializable
 {
     String MasterData="";
+    private int kacYilVar;
+    /*
     List<String> RecordList=new ArrayList<String>();
 
     List<String> Sdate=new ArrayList<String>();
@@ -53,6 +59,7 @@ public class Controller implements Initializable
     List<String> country=new ArrayList<String>();
     List<String> Svalue=new ArrayList<String>();
     List<String> category=new ArrayList<String>();
+    */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -65,11 +72,16 @@ public class Controller implements Initializable
 
 
     public String ustBilgi2 ;
-    public  String ustBilgi1 ;
+    public String ustBilgi1 ;
     public Set<String> linkedHashSet = new LinkedHashSet<>();
     public Set<String> linkedHashSetUlke = new LinkedHashSet<>();
 
-    ArrayList<String> elementsCountry =  new ArrayList();
+    public final NumberAxis yAxis = new NumberAxis();
+    public final CategoryAxis xAxis = new CategoryAxis();
+    public final BarChart<Number, String> barChart = new BarChart<Number, String>(yAxis, xAxis);
+
+
+    ArrayList<String> elementsCountry =  new ArrayList<String>();
 
     ArrayList<String> ListxName =new ArrayList<String>();
     ArrayList<String> ListxCountry =new ArrayList<String>();
@@ -81,10 +93,12 @@ public class Controller implements Initializable
 
     ArrayList<Integer> ListindexofYear =  new ArrayList();
 
-    public int i123 = 0;
+    //public int i123 = 0;
     public int kaculkevar = 0;
     public int indexofYear=0;
     public int min = 0;
+    public int max = 0;
+
 
     @FXML
     private void BCXmlOku(ActionEvent event) {
@@ -96,13 +110,10 @@ public class Controller implements Initializable
         Bar.setVisible(true);
 
 
-
-
-
-       FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
+        /*FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);*/
         // TODO : üst satırı aç altı kapat
-        //String selectedFile = "C:\\Users\\Mustafa\\IdeaProjects\\JavaOdev\\Data Source -20210510\\country_populations.xml";
+        String selectedFile = "C:\\Users\\Mustafa\\IdeaProjects\\JavaOdev\\Data Source -20210510\\country_populations.xml";
         //String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\country_populations.xml";
 
         if (selectedFile == null) return;
@@ -157,8 +168,11 @@ public class Controller implements Initializable
                 if (t.getNodeType()== Node.ELEMENT_NODE){
                     Element tittle = (Element) t;
                     NodeList xlabelList = doc.getElementsByTagName("xlabel");
+                    Node xlabel = xlabelList.item(0);
+                    ustBilgi1 = xlabel.getTextContent();
                     NodeList recordList = doc.getElementsByTagName("record");
-                    for (int k=0;k<xlabelList.getLength();k++){
+                    //xlabeli ustBilgi1 içine koymak için önceden kullanılan, üstteki okey? TODO
+                    /*for (int k=0;k<xlabelList.getLength();k++){
                         Node xl = xlabelList.item(i);
                         if (xl.getNodeType() == Node.ELEMENT_NODE){
                             Element xlabel = (Element) xl;
@@ -166,6 +180,7 @@ public class Controller implements Initializable
                             ustBilgi1 = xl.getTextContent();
                         }
                     }
+                     */
                     for (int j=0;j<recordList.getLength();j++){
                         Node Name =recordList.item(j);
                         if (Name.getNodeType()== Node.ELEMENT_NODE){
@@ -266,18 +281,44 @@ public class Controller implements Initializable
         //TODO : Sonradan eklenecek (txt)
 
     }
+
+    private int kactaneyil (){
+        kacYilVar = 0;
+        Collections.sort(ListxYearORJ);
+        int bas = Integer.parseInt(ListxYearORJ.get(0));
+        for (int i= 1;i<ListxYearORJ.size();i++){
+            if (Integer.parseInt(ListxYearORJ.get(i))!=bas){
+                bas = Integer.parseInt(ListxYearORJ.get(i));
+                kacYilVar++;
+            }
+        }
+        System.out.printf(String.valueOf(kacYilVar));
+        return kacYilVar;
+    }   //TODO : İsimlendirme düzenlenecek
     @FXML
     private void BCbar (ActionEvent event) {
         System.out.println("bar tetik");
 
-
-        CategoryAxis xAxis = new CategoryAxis();
+        //SET BARCHART PROPERTY
         xAxis.setLabel(ustBilgi1);
-        NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("");
-        BarChart<Number, String> barChart = new BarChart<Number, String>(yAxis, xAxis);
-        XYChart.Series<Number, String> dataSeries1 = new XYChart.Series<Number, String>();
+        barChart.setTitle(ustBilgi2);
+        barChart.setPrefSize(900,800);
+        //barChart.autosize();
+        barChart.setBarGap(-18);
+        barChart.setCategoryGap(0);
+        barChart.setHorizontalGridLinesVisible(false);
+        barChart.setLegendSide(Side.TOP);
 
+        //SET YEAR PROPERTY
+        Label yearLabel = new Label();
+        yearLabel.setOpacity(0.5);
+        yearLabel.setLayoutX(725);
+        yearLabel.setLayoutY(675);
+        yearLabel.setFont(Font.font("Times New Roman",80));
+
+
+        XYChart.Series<Number, String> dataSeries1 = new XYChart.Series<Number, String>();
         XYChart.Series<Number, String> dataSeries2 = new XYChart.Series<Number, String>();
         XYChart.Series<Number, String> dataSeries3 = new XYChart.Series<Number, String>();
         XYChart.Series<Number, String> dataSeries4 = new XYChart.Series<Number, String>();
@@ -286,11 +327,11 @@ public class Controller implements Initializable
         XYChart.Series<Number, String> dataSeries7 = new XYChart.Series<Number, String>();
         XYChart.Series<Number, String> dataSeries8 = new XYChart.Series<Number, String>();
 
-                 elementsCountry =  new ArrayList<>(linkedHashSet);
+        elementsCountry =  new ArrayList<>(linkedHashSet);
         ArrayList<String> elementsName = new ArrayList<>(linkedHashSetUlke);
-int elementsCountryi = 0;
+        int elementsCountryi = 0;
         for (String x : elementsCountry){
-            System.out.println(x);
+            System.out.println(x);// Europe, North America
             //dataSeries1.getData().add(new XYChart.Data<Number, String>(0, x));
             elementsCountryi++;
             if (elementsCountryi == 1)           { dataSeries1.setName(x); barChart.getData().add(dataSeries1); }
@@ -304,41 +345,46 @@ int elementsCountryi = 0;
         }
 
 
-
         min = Integer.parseInt(ListxYear.get(0));
+        max = Integer.parseInt(ListxYear.get(0));
         for (int i = 1; i < ListxYear.size(); i++) {
             if (Integer.parseInt(ListxYear.get(i)) < min) {
                 min = Integer.parseInt(ListxYear.get(i));
                 //ListindexofYear.add(indexofYear);
             }
+            if (Integer.parseInt(ListxYear.get(i)) > max){//gerek var mı bak bir daha
+                max =Integer.parseInt(ListxYear.get(i));
+            }
         }
+        System.out.println(min);//1960
+        System.out.println(max);//2019
 
-        ListindexofYear.add(indexofYear);
-
-        System.out.println(min);
+        ListindexofYear.add(indexofYear);//burası çalışmıyor galiba ?
 
         kaculkevar = 0;
 
-
         indexofYear = ListxYear.indexOf(String.valueOf(min));
         while(indexofYear >= 0) {
-            System.out.println(indexofYear);
+            System.out.println(indexofYear);// 0 60 120 180 240
             ListxYear.set(indexofYear,"99999");
             indexofYear = ListxYear.indexOf(String.valueOf(min));
             ListindexofYear.add(indexofYear);
             kaculkevar++;
         }
-        min++;
+        //min++; //TODO:Burada min++ yapmasak??
+
 
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+        timeline.getKeyFrames().stream().sorted();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {//milisaniyeye ayar lazım gibi
             @Override
             public void handle(ActionEvent actionEvent) {
-                min = Integer.parseInt(ListxYear.get(0));
+                yearLabel.setText(Integer.toString(min));
+                //min = Integer.parseInt(ListxYear.get(0)); // TODO:Buna da ihtiyaç yok??
 
                 for(int i = 0; i<kaculkevar;i++){
 
-                    int abc =             ListindexofYear.get(i);
+                    int abc = ListindexofYear.get(i);
 //                    if (ListxCategory.get(abc).equals(elementsCountry.get(0)))
 //                    {
 //                        dataSeries1.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));
@@ -353,7 +399,7 @@ int elementsCountryi = 0;
                     try { if (ListxCategory.get(abc).equals(elementsCountry.get(6))) dataSeries7.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
                     try { if (ListxCategory.get(abc).equals(elementsCountry.get(7))) dataSeries8.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
 
-                    Collections.sort(dataSeries1.getData(), new Comparator<XYChart.Data>() {
+                    /*Collections.sort(dataSeries1.getData(), new Comparator<XYChart.Data>() {
                         @Override
                         public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
                     Collections.sort(dataSeries2.getData(), new Comparator<XYChart.Data>() {
@@ -378,16 +424,20 @@ int elementsCountryi = 0;
                         @Override
                         public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
 
+
+                     */
                     //barChart.
                     //if (ListxCategory.get(abc) == elementsCountry.get(1))                    dataSeries2.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));
                     //System.out.println(ListxYearORJ.get(abc) + ListxName.get(abc)+ListxValue.get(abc));
                 }
+
                 min = Integer.parseInt(ListxYear.get(0));
                 for (int i = 1; i < ListxYear.size(); i++) {
                     if (Integer.parseInt(ListxYear.get(i)) < min) {
                         min = Integer.parseInt(ListxYear.get(i));
                     }
                 }
+
                 indexofYear = 0;
 
 
@@ -398,13 +448,15 @@ int elementsCountryi = 0;
                     indexofYear = ListxYear.indexOf(String.valueOf(min));
                     ListindexofYear.add(indexofYear);
                 }
+                //System.out.printf(String.valueOf(min)); //Bu arkadaş o anki yılı veriyor
 
             }
         }));
-// Repeat indefinitely until stop() method is called.
-        timeline.setCycleCount(Animation.INDEFINITE);
+
+        timeline.setCycleCount(kactaneyil());
         timeline.setAutoReverse(false);
         timeline.play();
+        barChart.setAnimated(false);
 
 //        // Series 2 - Data of 2015
 //        XYChart.Series<Number, String> dataSeries2 = new XYChart.Series<Number, String>();
@@ -418,23 +470,59 @@ int elementsCountryi = 0;
         //barChart.getData().addAll(dataSeries1,dataSeries2,dataSeries3,dataSeries4,dataSeries5,dataSeries6,dataSeries7,dataSeries8);
         //barChart.getData().add(dataSeries2);
 
-        barChart.setTitle(ustBilgi2);
+        //BUTTON PROPERTY
+        Button buttonPause = new Button("Duraklat");
+        buttonPause.setLayoutX(2);
+        buttonPause.setLayoutY(800);
+        Button buttonPlay = new Button("Devam Et");
+        buttonPlay.setDisable(true);
+        buttonPlay.setLayoutX(112);
+        buttonPlay.setLayoutY(800);
+        EventHandler<ActionEvent> eventPlay = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                timeline.play();
+                buttonPause.setDisable(false);
+                buttonPlay.setDisable(true);
+            }
+        };
+        EventHandler<ActionEvent> eventPause = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                timeline.pause();
+                buttonPause.setDisable(true);
+                buttonPlay.setDisable(false);
+            }
+        };
+        buttonPause.setOnAction(eventPause);
+        buttonPlay.setOnAction(eventPlay);
+        buttonPause.setPrefSize(100,50);
+        buttonPlay.setPrefSize(100,50);
 
-        Button b1 = new Button("button");
-        Button b2 = new Button("button");
-        Button b3 = new Button("button");
-        VBox vbox = new VBox(barChart,b1,b2,b3);
-        Scene scene = new Scene(vbox, 400, 200);
+        Button butttonRestart = new Button( "Yeniden Başlat" );
+        butttonRestart.setPrefSize(150,50);
+        butttonRestart.setLayoutX(222);
+        butttonRestart.setLayoutY(800);
+        EventHandler<ActionEvent> eventRestart = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                timeline.playFromStart();
+                //TODO:Restart actionu tanımlanacak
+            }
+        };
+        butttonRestart.setOnAction(eventRestart);
 
-        Stage primaryStage = new Stage();
-        //Scene scene = new Scene(b, 200, 100);
-        //primaryStage.setScene(scene);
+        AnchorPane anchorPane = new AnchorPane(barChart,buttonPause,buttonPlay,butttonRestart,yearLabel);
+        Scene scene = new Scene(anchorPane, 1000, 900);
 
-        primaryStage.setScene(scene);
-        primaryStage.setHeight(300);
-        primaryStage.setWidth(400);
 
-        primaryStage.show();
+        Stage secondStage = new Stage();
+        secondStage.setScene(scene);
+
+        secondStage.setResizable(false);
+        secondStage.setWidth(1000);
+        secondStage.setHeight(900);
+        secondStage.show();
     }
 //    public static int indexOf(LinkedHashSet<String> set,
 //                              int element)
@@ -467,7 +555,7 @@ int elementsCountryi = 0;
     private void BCline (ActionEvent event) {
         System.out.println("line tetik");
 
-            JOptionPane.showMessageDialog(null, "Hocam diğer taraf mükkemmel çalışsıon diye burayı yapmadık", "InfoBox: " + "malesef", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Hocam diğer taraf mükkemmel çalışsıon diye burayı yapmadık", "InfoBox: " + "malesef", JOptionPane.INFORMATION_MESSAGE);
 
 
     }
@@ -489,13 +577,14 @@ int elementsCountryi = 0;
         MasterData = "Hata";
 
     }
+}
 
 
 
 
-    //--- eski fonksiyonlar
+//--- eski fonksiyonlar
 
-    private void F_xml_eski(String gelen){
+  /*  private void F_xml_eski(String gelen){
         System.out.println(gelen + " >> dosya xml olarak saptandı devam ediliyor");
         DosyaOku(gelen);
         // System.out.println(MasterData);
@@ -526,11 +615,6 @@ int elementsCountryi = 0;
     }
 
 
-
-    @FXML
-    private void BCTextOku(ActionEvent event){
-        System.out.println("TextOku butonu tetik");
-    }
 
 }
 
