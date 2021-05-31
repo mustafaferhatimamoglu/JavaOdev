@@ -65,6 +65,8 @@ public class Controller implements Initializable
     {
     }
 
+    public String LorB;
+    public String XorT;
     @FXML Button XmlOku;
     @FXML Button Bar;
     @FXML Button Line;
@@ -75,10 +77,10 @@ public class Controller implements Initializable
     public Set<String> linkedHashSet = new LinkedHashSet<>();
     public Set<String> linkedHashSetUlke = new LinkedHashSet<>();
 
-    public final NumberAxis yAxis = new NumberAxis();
-    public final CategoryAxis xAxis = new CategoryAxis();
-    public final BarChart<Number, String> barChart = new BarChart<Number, String>(yAxis, xAxis);
-    public final LineChart<Number, String> lineChart = new LineChart<Number, String>(yAxis, xAxis);
+    public NumberAxis yAxis = new NumberAxis();
+    public CategoryAxis xAxis = new CategoryAxis();
+    public BarChart<Number, String> barChart = new BarChart<Number, String>(yAxis, xAxis);
+    public LineChart<Number, String> lineChart = new LineChart<Number, String>(yAxis, xAxis);
 
 
     ArrayList<String> elementsCountry =  new ArrayList<String>();
@@ -100,6 +102,7 @@ public class Controller implements Initializable
     public int max = 0;
 
     public String gelenSabit ;
+    public String Dosyayolu;
 
 
     @FXML
@@ -112,12 +115,12 @@ public class Controller implements Initializable
         Bar.setVisible(true);
 
 
-//        FileChooser fileChooser = new FileChooser();
-//        File selectedFile = fileChooser.showOpenDialog(null);
+       FileChooser fileChooser = new FileChooser();
+       File selectedFile = fileChooser.showOpenDialog(null);
         // TODO : üst satırı aç altı kapat
         //String selectedFile = "C:\\Users\\Mustafa\\IdeaProjects\\JavaOdev\\Data Source -20210510\\country_populations.xml";
-       // String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\country_populations.xml";
-        String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\city_populations.txt";
+        //String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\country_populations.xml";
+       // String selectedFile = "C:\\Users\\musta\\IdeaProjects\\untitled\\Data Source -20210510\\city_populations.txt";
         gelenSabit = selectedFile.toString();
         if (selectedFile == null) return;
         System.out.println(selectedFile);
@@ -133,8 +136,8 @@ public class Controller implements Initializable
     }
 
     private void F_xml (String gelen){
-
-
+        XorT = "X";
+        Dosyayolu=gelen;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -200,6 +203,8 @@ public class Controller implements Initializable
 
     private void F_txt (String gelen) {
         System.out.println(gelen + " >> dosya txt olarak saptandı devam ediliyor");
+        XorT = "T";
+        Dosyayolu=gelen;
         try {
             File myObj = new File(gelen);
             int i = 0;
@@ -256,6 +261,7 @@ public class Controller implements Initializable
     @FXML
     private void BCbar (ActionEvent event) {
         System.out.println("bar tetik");
+        LorB = "B";
         //BooleanProperty isGameRunning = new SimpleBooleanProperty(false);
 //        Window v = null;
 //        v.getScene();
@@ -1051,6 +1057,7 @@ public class Controller implements Initializable
     @FXML
     private void BCline (ActionEvent event) {
         System.out.println("line tetik");
+        LorB ="L";
 
         //SET lineChart PROPERTY
         xAxis.setLabel(ustBilgi1);
@@ -1127,11 +1134,11 @@ public class Controller implements Initializable
 //        int elementsCountryi = 0;
 //        for (String x : elementsCountry){
         elementsCountry = new ArrayList<>(linkedHashSetUlke);
-        ArrayList<String> elementsName = new ArrayList<>(linkedHashSetUlke);
+        ArrayList<String> elementsName = new ArrayList<>(linkedHashSet);
         int elementsCountryi = 0;
         for (String x : elementsCountry){
-            System.out.println(x);// Europe, North America
-            //dataSeries1.getData().add(new XYChart.Data<Number, String>(0, x));
+            System.out.println(x);
+
             elementsCountryi++;
             if (elementsCountryi == 1)           { dataSeries1.setName(x); lineChart.getData().add(dataSeries1); }
             if (elementsCountryi == 2)           { dataSeries2.setName(x); lineChart.getData().add(dataSeries2); }
@@ -1228,56 +1235,56 @@ public class Controller implements Initializable
 
                     int abc = ListindexofYear.get(i);
 
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(0))) dataSeries1.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(1))) dataSeries2.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(2))) dataSeries3.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(3))) dataSeries4.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(4))) dataSeries5.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(5))) dataSeries6.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(6))) dataSeries7.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(7))) dataSeries8.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(8))) dataSeries9.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(9))) dataSeries10.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(10))) dataSeries11.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(11))) dataSeries12.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(12))) dataSeries13.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(13))) dataSeries14.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(14))) dataSeries15.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(15))) dataSeries16.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(16))) dataSeries17.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(17))) dataSeries18.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(18))) dataSeries19.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(19))) dataSeries20.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(20))) dataSeries21.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(21))) dataSeries22.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(22))) dataSeries23.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(23))) dataSeries24.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(24))) dataSeries25.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(25))) dataSeries26.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(26))) dataSeries27.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(27))) dataSeries28.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(28))) dataSeries29.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(29))) dataSeries30.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(30))) dataSeries31.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(31))) dataSeries32.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(32))) dataSeries33.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(33))) dataSeries34.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(34))) dataSeries35.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(35))) dataSeries36.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(36))) dataSeries37.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(37))) dataSeries38.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(38))) dataSeries39.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(39))) dataSeries40.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(40))) dataSeries41.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(41))) dataSeries42.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(42))) dataSeries43.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(43))) dataSeries44.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(44))) dataSeries45.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(45))) dataSeries46.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(46))) dataSeries47.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(47))) dataSeries48.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(48))) dataSeries49.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
-                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(49))) dataSeries50.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(0))) dataSeries1.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(1))) dataSeries2.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(2))) dataSeries3.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(3))) dataSeries4.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(4))) dataSeries5.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(5))) dataSeries6.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(6))) dataSeries7.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(7))) dataSeries8.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(8))) dataSeries9.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(9))) dataSeries10.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(10))) dataSeries11.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(11))) dataSeries12.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(12))) dataSeries13.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(13))) dataSeries14.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(14))) dataSeries15.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(15))) dataSeries16.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(16))) dataSeries17.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(17))) dataSeries18.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(18))) dataSeries19.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(19))) dataSeries20.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(20))) dataSeries21.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(21))) dataSeries22.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(22))) dataSeries23.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(23))) dataSeries24.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(24))) dataSeries25.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(25))) dataSeries26.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(26))) dataSeries27.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(27))) dataSeries28.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(28))) dataSeries29.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(29))) dataSeries30.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(30))) dataSeries31.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(31))) dataSeries32.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(32))) dataSeries33.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(33))) dataSeries34.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(34))) dataSeries35.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(35))) dataSeries36.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(36))) dataSeries37.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(37))) dataSeries38.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(38))) dataSeries39.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(39))) dataSeries40.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(40))) dataSeries41.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(41))) dataSeries42.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(42))) dataSeries43.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(43))) dataSeries44.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(44))) dataSeries45.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(45))) dataSeries46.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(46))) dataSeries47.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(47))) dataSeries48.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(48))) dataSeries49.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxName.get(abc).equals(elementsCountry.get(49))) dataSeries50.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
 
 
 
@@ -1418,8 +1425,35 @@ public class Controller implements Initializable
         MasterData = "Hata";
 
     }
-    private void YedidenBasla123() {
+    private void YedidenBasla123(){
         secondStage.close();
+
+         linkedHashSet = new LinkedHashSet<>();
+         linkedHashSetUlke = new LinkedHashSet<>();
+        yAxis = new NumberAxis();
+        xAxis = new CategoryAxis();
+        barChart = new BarChart<Number, String>(yAxis, xAxis);
+         lineChart = new LineChart<Number, String>(yAxis, xAxis);
+
+         elementsCountry =  new ArrayList<String>();
+         ListxName =new ArrayList<String>();
+         ListxCountry =new ArrayList<String>();
+         ListxYearORJ =new ArrayList<String>();
+         ListxYear =new ArrayList<String>();
+         ListxValue =new ArrayList<String>();
+         ListxCategory =new ArrayList<String>();
+         ListindexofYear =  new ArrayList();
+
+        if (XorT.equals( "T")) F_txt(Dosyayolu);
+        if (XorT.equals("X")) F_xml(Dosyayolu);
+        if(LorB.equals("L") ) Line.fire();
+        if(LorB.equals("B") ) Bar.fire();
+        //(new String("</data>").equals(MasterData)))
+    }
+    private void YedidenBasla123_eski() {
+        secondStage.close();
+
+
 ////////////
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
