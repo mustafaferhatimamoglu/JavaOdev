@@ -13,10 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -81,6 +78,7 @@ public class Controller implements Initializable
     public final NumberAxis yAxis = new NumberAxis();
     public final CategoryAxis xAxis = new CategoryAxis();
     public final BarChart<Number, String> barChart = new BarChart<Number, String>(yAxis, xAxis);
+    public final LineChart<Number, String> lineChart = new LineChart<Number, String>(yAxis, xAxis);
 
 
     ArrayList<String> elementsCountry =  new ArrayList<String>();
@@ -1054,7 +1052,350 @@ public class Controller implements Initializable
     private void BCline (ActionEvent event) {
         System.out.println("line tetik");
 
-        JOptionPane.showMessageDialog(null, "Hocam diğer taraf mükkemmel çalışsıon diye burayı yapmadık", "InfoBox: " + "malesef", JOptionPane.INFORMATION_MESSAGE);
+        //SET lineChart PROPERTY
+        xAxis.setLabel(ustBilgi1);
+        yAxis.setLabel("");
+        lineChart.setTitle(ustBilgi2);
+        lineChart.setPrefSize(900,800);
+        //lineChart.autosize();
+        lineChart.setHorizontalGridLinesVisible(true);
+        lineChart.setLegendSide(Side.TOP);
+
+        //SET YEAR PROPERTY
+        Label yearLabel = new Label();
+        yearLabel.setOpacity(0.5);
+        yearLabel.setLayoutX(725);
+        yearLabel.setLayoutY(675);
+        yearLabel.setFont(Font.font("Times New Roman",80));
+
+
+        XYChart.Series<Number, String> dataSeries1 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries2 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries3 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries4 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries5 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries6 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries7 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries8 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries9 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries10 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries11 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries12 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries13 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries14 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries15 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries16 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries17 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries18 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries19 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries20 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries21 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries22 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries23 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries24 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries25 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries26 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries27 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries28 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries29 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries30 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries31 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries32 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries33 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries34 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries35 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries36 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries37 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries38 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries39 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries40 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries41 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries42 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries43 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries44 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries45 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries46 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries47 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries48 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries49 = new XYChart.Series<Number, String>();
+        XYChart.Series<Number, String> dataSeries50 = new XYChart.Series<Number, String>();
+
+
+
+//        elementsCountry =  new ArrayList<>(linkedHashSet);
+//        ArrayList<String> elementsName = new ArrayList<>(linkedHashSetUlke);
+//        int elementsCountryi = 0;
+//        for (String x : elementsCountry){
+        elementsCountry = new ArrayList<>(linkedHashSetUlke);
+        ArrayList<String> elementsName = new ArrayList<>(linkedHashSetUlke);
+        int elementsCountryi = 0;
+        for (String x : elementsCountry){
+            System.out.println(x);// Europe, North America
+            //dataSeries1.getData().add(new XYChart.Data<Number, String>(0, x));
+            elementsCountryi++;
+            if (elementsCountryi == 1)           { dataSeries1.setName(x); lineChart.getData().add(dataSeries1); }
+            if (elementsCountryi == 2)           { dataSeries2.setName(x); lineChart.getData().add(dataSeries2); }
+            if (elementsCountryi == 3)           { dataSeries3.setName(x); lineChart.getData().add(dataSeries3); }
+            if (elementsCountryi == 4)           { dataSeries4.setName(x); lineChart.getData().add(dataSeries4); }
+            if (elementsCountryi == 5)           { dataSeries5.setName(x); lineChart.getData().add(dataSeries5); }
+            if (elementsCountryi == 6)           { dataSeries6.setName(x); lineChart.getData().add(dataSeries6); }
+            if (elementsCountryi == 7)           { dataSeries7.setName(x); lineChart.getData().add(dataSeries7); }
+            if (elementsCountryi == 8)           { dataSeries8.setName(x); lineChart.getData().add(dataSeries8); }
+            if (elementsCountryi == 9)           { dataSeries9.setName(x); lineChart.getData().add(dataSeries9); }
+            if (elementsCountryi == 10)           { dataSeries10.setName(x); lineChart.getData().add(dataSeries10); }
+            if (elementsCountryi == 11)           { dataSeries11.setName(x); lineChart.getData().add(dataSeries11); }
+            if (elementsCountryi == 12)           { dataSeries12.setName(x); lineChart.getData().add(dataSeries12); }
+            if (elementsCountryi == 13)           { dataSeries13.setName(x); lineChart.getData().add(dataSeries13); }
+            if (elementsCountryi == 14)           { dataSeries14.setName(x); lineChart.getData().add(dataSeries14); }
+            if (elementsCountryi == 15)           { dataSeries15.setName(x); lineChart.getData().add(dataSeries15); }
+            if (elementsCountryi == 16)           { dataSeries16.setName(x); lineChart.getData().add(dataSeries16); }
+            if (elementsCountryi == 17)           { dataSeries17.setName(x); lineChart.getData().add(dataSeries17); }
+            if (elementsCountryi == 18)           { dataSeries18.setName(x); lineChart.getData().add(dataSeries18); }
+            if (elementsCountryi == 19)           { dataSeries19.setName(x); lineChart.getData().add(dataSeries19); }
+            if (elementsCountryi == 20)           { dataSeries20.setName(x); lineChart.getData().add(dataSeries20); }
+            if (elementsCountryi == 21)           { dataSeries21.setName(x); lineChart.getData().add(dataSeries21); }
+            if (elementsCountryi == 22)           { dataSeries22.setName(x); lineChart.getData().add(dataSeries22); }
+            if (elementsCountryi == 23)           { dataSeries23.setName(x); lineChart.getData().add(dataSeries23); }
+            if (elementsCountryi == 24)           { dataSeries24.setName(x); lineChart.getData().add(dataSeries24); }
+            if (elementsCountryi == 25)           { dataSeries25.setName(x); lineChart.getData().add(dataSeries25); }
+            if (elementsCountryi == 26)           { dataSeries26.setName(x); lineChart.getData().add(dataSeries26); }
+            if (elementsCountryi == 27)           { dataSeries27.setName(x); lineChart.getData().add(dataSeries27); }
+            if (elementsCountryi == 28)           { dataSeries28.setName(x); lineChart.getData().add(dataSeries28); }
+            if (elementsCountryi == 29)           { dataSeries29.setName(x); lineChart.getData().add(dataSeries29); }
+            if (elementsCountryi == 30)           { dataSeries30.setName(x); lineChart.getData().add(dataSeries30); }
+            if (elementsCountryi == 31)           { dataSeries31.setName(x); lineChart.getData().add(dataSeries31); }
+            if (elementsCountryi == 32)           { dataSeries32.setName(x); lineChart.getData().add(dataSeries32); }
+            if (elementsCountryi == 33)           { dataSeries33.setName(x); lineChart.getData().add(dataSeries33); }
+            if (elementsCountryi == 34)           { dataSeries34.setName(x); lineChart.getData().add(dataSeries34); }
+            if (elementsCountryi == 35)           { dataSeries35.setName(x); lineChart.getData().add(dataSeries35); }
+            if (elementsCountryi == 36)           { dataSeries36.setName(x); lineChart.getData().add(dataSeries36); }
+            if (elementsCountryi == 37)           { dataSeries37.setName(x); lineChart.getData().add(dataSeries37); }
+            if (elementsCountryi == 38)           { dataSeries38.setName(x); lineChart.getData().add(dataSeries38); }
+            if (elementsCountryi == 39)           { dataSeries39.setName(x); lineChart.getData().add(dataSeries39); }
+            if (elementsCountryi == 40)           { dataSeries40.setName(x); lineChart.getData().add(dataSeries40); }
+            if (elementsCountryi == 41)           { dataSeries41.setName(x); lineChart.getData().add(dataSeries41); }
+            if (elementsCountryi == 42)           { dataSeries42.setName(x); lineChart.getData().add(dataSeries42); }
+            if (elementsCountryi == 43)           { dataSeries43.setName(x); lineChart.getData().add(dataSeries43); }
+            if (elementsCountryi == 44)           { dataSeries44.setName(x); lineChart.getData().add(dataSeries44); }
+            if (elementsCountryi == 45)           { dataSeries45.setName(x); lineChart.getData().add(dataSeries45); }
+            if (elementsCountryi == 46)           { dataSeries46.setName(x); lineChart.getData().add(dataSeries46); }
+            if (elementsCountryi == 47)           { dataSeries47.setName(x); lineChart.getData().add(dataSeries47); }
+            if (elementsCountryi == 48)           { dataSeries48.setName(x); lineChart.getData().add(dataSeries48); }
+            if (elementsCountryi == 49)           { dataSeries49.setName(x); lineChart.getData().add(dataSeries49); }
+            if (elementsCountryi == 50)           { dataSeries50.setName(x); lineChart.getData().add(dataSeries50); }
+
+        }
+
+
+        min = Integer.parseInt(ListxYear.get(0));
+        max = Integer.parseInt(ListxYear.get(0));
+        for (int i = 1; i < ListxYear.size(); i++) {
+            if (Integer.parseInt(ListxYear.get(i)) < min) {
+                min = Integer.parseInt(ListxYear.get(i));
+                //ListindexofYear.add(indexofYear);
+            }
+            if (Integer.parseInt(ListxYear.get(i)) > max){//gerek var mı bak bir daha
+                max =Integer.parseInt(ListxYear.get(i));
+            }
+        }
+        System.out.println(min);//1960
+        System.out.println(max);//2019
+
+        ListindexofYear.add(indexofYear);//burası çalışmıyor galiba ?
+
+        kaculkevar = 0;
+
+        indexofYear = ListxYear.indexOf(String.valueOf(min));
+        while(indexofYear >= 0) {
+            System.out.println(indexofYear);// 0 60 120 180 240
+            ListxYear.set(indexofYear,"99999");
+            indexofYear = ListxYear.indexOf(String.valueOf(min));
+            ListindexofYear.add(indexofYear);
+            kaculkevar++;
+        }
+        min++; //TODO:Burada min++ yapmasak??
+
+
+        Timeline timeline = new Timeline();
+        //timeline.getKeyFrames().stream().sorted();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {//milisaniyeye ayar lazım gibi
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                yearLabel.setText(Integer.toString(min)); //TODO ??
+                //min = Integer.parseInt(ListxYear.get(0)); // TODO:Buna da ihtiyaç yok??
+
+                for(int i = 0; i<kaculkevar;i++){
+
+                    int abc = ListindexofYear.get(i);
+
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(0))) dataSeries1.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(1))) dataSeries2.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(2))) dataSeries3.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(3))) dataSeries4.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(4))) dataSeries5.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(5))) dataSeries6.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(6))) dataSeries7.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(7))) dataSeries8.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(8))) dataSeries9.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(9))) dataSeries10.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(10))) dataSeries11.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(11))) dataSeries12.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(12))) dataSeries13.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(13))) dataSeries14.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(14))) dataSeries15.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(15))) dataSeries16.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(16))) dataSeries17.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(17))) dataSeries18.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(18))) dataSeries19.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(19))) dataSeries20.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(20))) dataSeries21.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(21))) dataSeries22.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(22))) dataSeries23.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(23))) dataSeries24.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(24))) dataSeries25.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(25))) dataSeries26.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(26))) dataSeries27.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(27))) dataSeries28.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(28))) dataSeries29.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(29))) dataSeries30.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(30))) dataSeries31.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(31))) dataSeries32.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(32))) dataSeries33.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(33))) dataSeries34.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(34))) dataSeries35.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(35))) dataSeries36.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(36))) dataSeries37.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(37))) dataSeries38.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(38))) dataSeries39.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(39))) dataSeries40.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(40))) dataSeries41.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(41))) dataSeries42.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(42))) dataSeries43.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(43))) dataSeries44.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(44))) dataSeries45.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(45))) dataSeries46.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(46))) dataSeries47.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(47))) dataSeries48.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(48))) dataSeries49.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+                    try { if (ListxCategory.get(abc).equals(elementsCountry.get(49))) dataSeries50.getData().add(new XYChart.Data<Number, String>(Integer.parseInt(ListxValue.get(abc)), ListxName.get(abc)));} catch(Exception e){}
+
+
+
+                    /*Collections.sort(dataSeries1.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries2.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries3.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries4.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries5.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries6.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries7.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+                    Collections.sort(dataSeries8.getData(), new Comparator<XYChart.Data>() {
+                        @Override
+                        public int compare(XYChart.Data o1, XYChart.Data o2) {                            Number xValue1 = (Number) o1.getXValue();                            Number xValue2 = (Number) o2.getXValue();                            return new BigDecimal(xValue1.toString()).compareTo(new BigDecimal(xValue2.toString()));                        }                    });
+
+
+                     */
+                }
+
+                min = Integer.parseInt(ListxYear.get(0));
+                for (int i = 1; i < ListxYear.size(); i++) {
+                    if (Integer.parseInt(ListxYear.get(i)) < min) {
+                        min = Integer.parseInt(ListxYear.get(i));
+                    }
+                }
+
+                indexofYear = 0;
+
+
+                ListindexofYear =  null;
+                ListindexofYear =  new ArrayList<>();
+                while(indexofYear >= 0) {
+                    ListxYear.set(indexofYear,"99999");
+                    indexofYear = ListxYear.indexOf(String.valueOf(min));
+                    ListindexofYear.add(indexofYear);
+                }
+                //System.out.printf(String.valueOf(min)); //Bu arkadaş o anki yılı veriyor
+
+            }
+        }));
+
+        timeline.setCycleCount(kactaneyil());
+        timeline.setAutoReverse(true);
+        timeline.play();
+        lineChart.setAnimated(true);
+
+        //BUTTON PROPERTY
+        Button buttonPause = new Button("Duraklat");
+        buttonPause.setLayoutX(2);
+        buttonPause.setLayoutY(800);
+        Button buttonPlay = new Button("Devam Et");
+        buttonPlay.setDisable(true);
+        buttonPlay.setLayoutX(112);
+        buttonPlay.setLayoutY(800);
+        EventHandler<ActionEvent> eventPlay = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                timeline.play();
+                buttonPause.setDisable(false);
+                buttonPlay.setDisable(true);
+            }
+        };
+        EventHandler<ActionEvent> eventPause = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                timeline.pause();
+                buttonPause.setDisable(true);
+                buttonPlay.setDisable(false);
+            }
+        };
+        buttonPause.setOnAction(eventPause);
+        buttonPlay.setOnAction(eventPlay);
+        buttonPause.setPrefSize(100,50);
+        buttonPlay.setPrefSize(100,50);
+
+        Button butttonRestart = new Button( "Yeniden Başlat" );
+        butttonRestart.setPrefSize(150,50);
+        butttonRestart.setLayoutX(222);
+        butttonRestart.setLayoutY(800);
+        EventHandler<ActionEvent> eventRestart = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+//                timeline.playFromStart();
+//                //TODO:Restart actionu tanımlanacak
+                YedidenBasla123();
+            }
+        };
+        butttonRestart.setOnAction(eventRestart);
+
+        AnchorPane anchorPane = new AnchorPane(lineChart,buttonPause,buttonPlay,butttonRestart,yearLabel);
+        Scene scene = new Scene(anchorPane, 1000, 900);
+
+
+
+        secondStage.setScene(scene);
+
+        secondStage.setResizable(false);
+        secondStage.setWidth(1000);
+        secondStage.setHeight(900);
+
+        secondStage.show();
+        secondStage.setOnCloseRequest(e -> Platform.exit());
+
+
+        //JOptionPane.showMessageDialog(null, "Hocam diğer taraf mükkemmel çalışsıon diye burayı yapmadık", "InfoBox: " + "malesef", JOptionPane.INFORMATION_MESSAGE);
 
 
     }
